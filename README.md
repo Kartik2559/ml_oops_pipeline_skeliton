@@ -90,7 +90,7 @@ The **Trainer** class orchestrates the entire flow without being tightly coupled
 ---
 
 ## 📁 Project Structure
-
+```text
 ml_oops_pipeline/
 ├── src/
 │   ├── data/
@@ -128,7 +128,7 @@ ml_oops_pipeline/
 ├── requirements.txt
 ├── README.md
 └── .gitignore
-
+```
 
 ## 🧩 OOP Concepts Used
 
