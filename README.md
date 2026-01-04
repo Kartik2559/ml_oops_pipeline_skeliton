@@ -32,18 +32,57 @@ This project solves these problems using **OOP design patterns** instead of writ
 
 ## Architecture Overview
 
-Raw Data
-↓
-Dataset (Data Ingestion)
-↓
-Preprocessor (Cleaning & Transformation)
-↓
-Model (Training & Prediction)
-↓
-Evaluator (Metrics)
-↓
-Logger (Tracking & Debugging)
+# Modular Machine Learning Pipeline using OOP (Python)
 
+This project demonstrates how to design a **production-ready Machine Learning pipeline** using **Object-Oriented Programming (OOP)** principles in Python. 
+
+The goal of this project is not to build a complex ML model, but to show **clean architecture, scalability, and real-world ML system design**, similar to how ML pipelines are built in product-based companies.
+
+---
+
+## Key Highlights
+
+* **End-to-end ML pipeline** using OOP principles.
+* **Clear separation of responsibilities** across modules.
+* **Dataset abstraction** utilizing the Factory Pattern.
+* **Pluggable** preprocessing and evaluation layers.
+* **Model abstraction** supporting multiple algorithms.
+* **Industry-style logging** for tracking and debugging.
+* **Extensible design** optimized for CI/CD environments.
+
+---
+
+## Why This Project?
+
+In real-world ML systems:
+* **Data sources change:** Pipelines must handle CSV, Excel, APIs, or Cloud storage.
+* **Models evolve:** Systems must transition from Linear models to Tree-based or Neural Networks easily.
+* **Logic updates:** Preprocessing and evaluation requirements change frequently.
+* **Scalability:** Pipelines must be testable, maintainable, and modular.
+
+This project solves these problems using **OOP design patterns** instead of writing monolithic, hard-to-maintain scripts.
+
+---
+
+## Architecture Overview
+
+The **Trainer** class orchestrates the entire flow without being tightly coupled to any specific implementation.
+
+
+
+```text
+Raw Data
+   ↓
+Dataset (Data Ingestion)
+   ↓
+Preprocessor (Cleaning & Transformation)
+   ↓
+Model (Training & Prediction)
+   ↓
+Evaluator (Metrics)
+   ↓
+Logger (Tracking & Debugging)
+```
 
 
 The **Trainer** class orchestrates the entire flow without being tightly coupled to any specific implementation.
@@ -54,45 +93,42 @@ The **Trainer** class orchestrates the entire flow without being tightly coupled
 
 ml_oops_pipeline/
 ├── src/
-│ ├── data/
-│ │ ├── dataset.py # Abstract Dataset Interface
-│ │ ├── csv_dataset.py # CSV data loader
-│ │ ├── excel_dataset.py # Excel data loader
-│ │ ├── api_dataset.py # API data loader
-│ │ └── data_factory.py # Dataset factory
-│ │
-│ ├── preprocessing/
-│ │ ├── base_preprocessor.py # Abstract Preprocessor
-│ │ └── simple_preprocessor.py # Basic preprocessing logic
-│ │
-│ ├── models/
-│ │ ├── base_model.py # Abstract Model Interface
-│ │ └── linear_model.py # Linear regression model
-│ │
-│ ├── evaluation/
-│ │ └── evaluator.py # Evaluation metrics
-│ │
-│ ├── training/
-│ │ └── trainer.py # Pipeline controller
-│ │
-│ ├── logging/
-│ │ └── logger.py # Centralized logger
-│ │
-│ └── main.py # Entry point
+│   ├── data/
+│   │   ├── dataset.py          # Abstract Dataset Interface
+│   │   ├── csv_dataset.py      # CSV data loader
+│   │   ├── excel_dataset.py    # Excel data loader
+│   │   ├── api_dataset.py      # API data loader
+│   │   └── data_factory.py     # Dataset factory
+│   │
+│   ├── preprocessing/
+│   │   ├── base_preprocessor.py # Abstract Preprocessor
+│   │   └── simple_preprocessor.py # Basic preprocessing logic
+│   │
+│   ├── models/
+│   │   ├── base_model.py       # Abstract Model Interface
+│   │   └── linear_model.py     # Linear regression model
+│   │
+│   ├── evaluation/
+│   │   └── evaluator.py        # Evaluation metrics
+│   │
+│   ├── training/
+│   │   └── trainer.py          # Pipeline controller
+│   │
+│   ├── logging/
+│   │   └── logger.py           # Centralized logger
+│   │
+│   └── main.py                 # Entry point
 │
 ├── data/
-│ └── train.csv # Sample dataset
+│   └── train.csv               # Sample dataset
 │
 ├── logs/
-│ └── app.log # Application logs
+│   └── app.log                 # Application logs
 │
 ├── requirements.txt
 ├── README.md
 └── .gitignore
 
-
-
----
 
 ## 🧩 OOP Concepts Used
 
@@ -117,19 +153,22 @@ Example:
 The Trainer works with any dataset or model as long as it follows the expected interface.
 
 Example:
-```python
 model.train(X, y)
 
 works for Linear, Tree-based, or Neural Network models.
-5. Composition
+
+
+### 5. Composition
 The Trainer has-a Dataset, Model, Preprocessor, Evaluator, and Logger.
 🏭 Dataset Factory Pattern
 The DataFactory dynamically selects the appropriate dataset implementation based on input source.
 Supported sources:
-CSV files
-Excel files
-REST APIs
+ - CSV files
+ - Excel files
+ - REST APIs
+
 This allows the pipeline to remain unchanged when data sources change.
+
 🧪 How the Pipeline Works
 1. main.py receives a data source
 2. DataFactory selects the correct dataset loader
